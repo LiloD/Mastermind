@@ -164,7 +164,7 @@ class MasterMind(object):
         cp = CodeBreaker()
         hint = None
         turn = 1
-        print "------------------Entropy Evaluation and--------------------------"
+        print "------------------Entropy Evaluation------------------------------"
         while hint != (4,0) :
             c = cp.previous_code 
             hint = cm.check(c)

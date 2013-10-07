@@ -28,7 +28,7 @@ index = 0
 for i in full_number:
 	#turns.append(master_mind(i))
 	k = master_mind(i)
-	print str(k)+"    No."+str(index)
+	print str(k)+"    No."+str(index)+" Secret Code: "+str(i)
 	turns.append(k)
 	index = index+1
 #print turns
