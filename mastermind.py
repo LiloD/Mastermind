@@ -95,7 +95,7 @@ class CodeBreaker(object):
 						r.append((n1,n2,n3,n4))
 		return r
 
-	def get_hint(self,hint):
+	def get_hint_entropy(self,hint):
 		p_list = []
 		cm = CodeMaker(self.previous_code)	
 		for c in self.possible_list:
@@ -105,7 +105,7 @@ class CodeBreaker(object):
 		self.possible_list = p_list
 		self.previous_code = self.get_fitness_code(p_list)
 
-	def get_hint2(self,hint):
+	def get_hint_randomize(self,hint):
 		p_list = []
 		cm = CodeMaker(self.previous_code)	
 		for c in self.possible_list:
@@ -115,7 +115,7 @@ class CodeBreaker(object):
 		self.possible_list = p_list
 		self.previous_code = random.choice(p_list)
 
-	def get_hint3(self,hint):
+	def get_hint_mix(self,hint):
 		p_list = []
 		cm = CodeMaker(self.previous_code)	
 		for c in self.possible_list:
@@ -160,7 +160,7 @@ class MasterMind(object):
 	def set_code(self,code):
 		self.code = code
 
-	def run(self):
+	def run_entropy(self):
 		cm = CodeMaker(self.code)
 		cp = CodeBreaker()
 		hint = None
@@ -168,9 +168,9 @@ class MasterMind(object):
 			c = cp.previous_code
 			print c 
 			hint = cm.check(c)
-			cp.get_hint(hint)
+			cp.get_hint_entropy(hint)
 
-	def run2(self):
+	def run_randomize(self):
 		cm = CodeMaker(self.code)
 		cp = CodeBreaker()
 		hint = None
@@ -178,12 +178,30 @@ class MasterMind(object):
 			c = cp.previous_code
 			print c 
 			hint = cm.check(c)
-			cp.get_hint2(hint)
-
+			cp.get_hint_randomize(hint)
+	
+	def run_mix(self):
+		cm = CodeMaker(self.code)
+		cp = CodeBreaker()
+		hint = None
+		while hint != (4,0) :
+			c = cp.previous_code
+			print c 
+			hint = cm.check(c)
+			cp.get_hint_mix(hint)
 if __name__ == '__main__':
+	# mm = MasterMind()
+	# mm.set_code((0,1,2,6))
+	# mm.run_entropy()	
+	# print "---------------------------"
+	# mm.run_randomize()
+
+	code = input("Please input the Code: ")
 	mm = MasterMind()
-	mm.set_code((0,1,2,6))
-	mm.run()	
-	print "---------------------------"
-	mm.run2()
+	mm.set_code(code)
+	mm.run_entropy()
+	print "--------------------------------"
+	mm.run_randomize()
+	print "--------------------------------"
+	mm.run_mix()
 
