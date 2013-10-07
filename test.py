@@ -11,7 +11,7 @@ def master_mind(code):
 
 	while hint != (4,0):
 		#print "-----"+str(turn)+"-------"
-		cb.get_hint3(hint)
+		cb.get_hint_mix(hint)
 		# cb.get_hint(hint)
 		#print cb.previous_code
 		hint = cm.check(cb.previous_code)
