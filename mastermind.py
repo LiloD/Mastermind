@@ -4,7 +4,6 @@ import math
 print "Hello Master Mind!!"
 print "Code : (n1,n2,n3,n4)"
 print "Hint : (A,B)"
-#hint = [(0,0),(0,1),(0,2),(0,3),(0,4),(1,0),(1,1),(1,2),(1,3),(2,0),(2,1),(2,2),(3,0),(4,0)]
 
 
 class CodePartition(object):
@@ -164,34 +163,40 @@ class MasterMind(object):
         cm = CodeMaker(self.code)
         cp = CodeBreaker()
         hint = None
+        turn = 1
         print "------------------Entropy Evaluation and--------------------------"
         while hint != (4,0) :
             c = cp.previous_code 
             hint = cm.check(c)
-            print str(c)+"   "+str(hint)
+            print "Turn "+str(turn)+":"+str(c)+"   "+str(hint)
             cp.get_hint_entropy(hint)
+            turn = turn+1
 
     def run_randomize(self):
         cm = CodeMaker(self.code)
         cp = CodeBreaker()
         hint = None
+        turn = 1
         print "------------------------Randomization------------------------------"
         while hint != (4,0) :
             c = cp.previous_code
             hint = cm.check(c)
-            print str(c)+"   "+str(hint)
+            print "Turn "+str(turn)+":"+str(c)+"   "+str(hint)
             cp.get_hint_randomize(hint)
-    
+            turn = turn+1
+
     def run_mix(self):
         cm = CodeMaker(self.code)
         cp = CodeBreaker()
         hint = None
+        turn = 1
         print "----------Mixture of Entropy Evaluation and Randomization-------------"
         while hint != (4,0) :
             c = cp.previous_code
             hint = cm.check(c)
-            print str(c)+"   "+str(hint)
+            print "Turn "+str(turn)+":"+str(c)+"   "+str(hint)
             cp.get_hint_mix(hint)
+            turn = turn+1
 
 if __name__ == '__main__':
     code = input("Please input the Code: ")
